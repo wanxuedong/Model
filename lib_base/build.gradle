@@ -1,0 +1,13 @@
+apply from: "../lib.build.gradle"
+
+dependencies {
+
+    api fileTree(dir: "libs", include: ["*.jar"])
+    api project(path: ':lib_utils')
+    api project(path: ':lib_logger')
+    api project(path: ':lib_widget')
+    api project(path: ':lib_internet')
+    api project(path: ':lib_common')
+    api project(path: ':lib_wheelpicker')
+
+}

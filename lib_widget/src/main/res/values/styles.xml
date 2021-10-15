@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--圆形头像控件自定义属性-->
+    <declare-styleable name="RotatingCircleView">
+        <attr name="circle_width" format="dimension" />
+        <attr name="circle_color" format="color" />
+        <attr name="circle_kind" format="flags">
+            <flag name="all" value="0x1111" />
+            <flag name="top_left" value="0x0001" />
+            <flag name="top_right" value="0x0010" />
+            <flag name="bottom_left" value="0x0100" />
+            <flag name="bottom_right" value="0x1000" />
+        </attr>
+        <attr name="circle_radius" format="dimension" />
+    </declare-styleable>
+
+    <style name="expend" parent="TextAppearance.AppCompat.Title">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="collapse" parent="TextAppearance.AppCompat.Title">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--对话框透明背景-->
+    <style name="TransParent_Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+</resources>

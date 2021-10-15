@@ -1,0 +1,65 @@
+if (isModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "world.share.itext"
+        }
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/center/AndroidManifest.xml'
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    //material
+    api rootProject.ext.dependencies.material
+    //multidex
+    api rootProject.ext.dependencies.multidex
+    implementation project(path: ':lib_utils')
+    implementation files('libs/barcodes-7.1.10.jar')
+    implementation files('libs/forms-7.1.10.jar')
+    implementation files('libs/io-7.1.10.jar')
+    implementation files('libs/kernel-7.1.10.jar')
+    implementation files('libs/layout-7.1.10.jar')
+    implementation files('libs/pdfa-7.1.10.jar')
+    implementation files('libs/pdftest-7.1.10.jar')
+    implementation files('libs/sign-7.1.10.jar')
+    implementation files('libs/slf4j-android-1.6.1-RC1.jar')
+    implementation files('libs/styled-xml-parser-7.1.10.jar')
+    implementation files('libs/svg-7.1.10.jar')
+    //ShimmerRecyclerView
+    api rootProject.ext.dependencies.ShimmerRecyclerView
+}

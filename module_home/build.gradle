@@ -1,0 +1,17 @@
+apply from: "../module.build.gradle"
+
+android {
+
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "world.share.home"
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':lib_base')
+    //阿里路由
+    api rootProject.ext.dependencies.arouterApi
+    annotationProcessor rootProject.ext.dependencies.arouterCompiler
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <declare-styleable name="BaseHeader">
+        <attr name="leftImg" format="reference" />
+        <attr name="rightImg" format="reference" />
+        <attr name="showLeftImg" format="boolean" />
+        <attr name="leftTitle" format="string" />
+        <attr name="centerTitle" format="string" />
+        <attr name="rightTitle" format="string" />
+        <attr name="leftTitleColor" format="color" />
+        <attr name="centerTitleColor" format="color" />
+        <attr name="rightTitleColor" format="color" />
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressButton">
+        <attr name="pb_progressColor" format="color" />
+        <attr name="pb_text" format="string" />
+        <attr name="pb_textColor" format="color" />
+        <attr name="pb_textSize" format="dimension" />
+        <attr name="pb_progressVisibility" format="enum">
+            <enum name="visible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="viewMove">
+        <attr name="view_count" format="integer" />
+        <attr name="view_color" format="color" />
+        <attr name="view_height" format="dimension" />
+        <attr name="view_width" format="dimension" />
+        <attr name="defaultposition" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="gateView">
+        <attr name="chose_color" format="color" />
+        <attr name="unchose_color" format="color" />
+        <attr name="line_color" format="color" />
+        <attr name="chose_size" format="dimension" />
+        <attr name="unchose_size" format="dimension" />
+        <attr name="line_height" format="dimension" />
+        <attr name="line_width" format="dimension" />
+        <attr name="line_padding" format="dimension" />
+        <attr name="default_chose" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="SkeletonBlock">
+        <attr name="sb_duration" format="integer"/>
+        <!-- Standard orientation constant. -->
+        <attr name="sb_orientation">
+            <!-- Defines an horizontal widget. -->
+            <enum name="horizontal" value="0" />
+            <!-- Defines a vertical widget. -->
+            <enum name="vertical" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>

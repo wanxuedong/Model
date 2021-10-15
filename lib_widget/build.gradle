@@ -1,0 +1,7 @@
+apply from: "../lib.build.gradle"
+
+dependencies {
+    implementation project(path: ':lib_utils')
+    implementation project(path: ':lib_common')
+    implementation project(path: ':lib_wheelpicker')
+}
