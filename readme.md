@@ -15,7 +15,7 @@ module_itext：pdf生成查看模块
 # 要点：
 ## 一 gradle新增和特殊的有以下几个文件：
 
-1.gradle.properties   :位于项目根目录，通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
+1.gradle.properties   :位于项目根目录 {@see}[gradle.properties] ，通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
                        isModule为false，即集成式开发，整体模块一起打包运行，并通过app壳进行访问  
                        isModule为true，组件式开发，所有module级别可以单独打包运行开发  
 2.config.gradle       :位于项目根目录，项目中设计到全部官方库和三方库全部在此定义，并在其他gradle中引用，只在gradle之间使用  
