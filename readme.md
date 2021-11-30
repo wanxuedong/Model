@@ -15,23 +15,24 @@ module_itext：pdf生成查看模块
 # 要点：
 ## 一 gradle新增和特殊的有以下几个文件：
 
-1.[gradle.properties](gradle.properties)     :通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
+1.[gradle.properties](gradle.properties):通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
                                                isModule为false，即集成式开发，整体模块一起打包运行，并通过app壳进行访问  
                                                isModule为true，组件式开发，所有module级别可以单独打包运行开发    
 
-2.[config.gradle](config.gradle)             :项目中设计到全部官方库和三方库全部在此定义，并在其他gradle中引用，只在gradle之间使用  
+2.[config.gradle](config.gradle):项目中设计到全部官方库和三方库全部在此定义，并在其他gradle中引用，只在gradle之间使用  
 
-3.[module.build.gradle](module.build.gradle) :项目的module级别(即可独立运行的module)添加引用，定义了module特有的一些设置  
+3.[module.build.gradle](module.build.gradle):项目的module级别(即可独立运行的module)添加引用，定义了module特有的一些设置  
 
-4.[lib.build.gradle](lib.build.gradle)       :所有lib级别(即不能独立运行，只能作为依赖)需要使用的引用在里面进行添加引用(感觉会引用一些用不到的，待优化)  
+4.[lib.build.gradle](lib.build.gradle):所有lib级别(即不能独立运行，只能作为依赖)需要使用的引用在里面进行添加引用(感觉会引用一些用不到的，待优化)  
 
-5.[build.gradle](lib_base/build.gradle)      :添加了全部的lib_类型的Module，新建可运行的Module需要添加该依赖
+5.[build.gradle](lib_base/build.gradle):添加了全部的lib_类型的Module，新建可运行的Module需要添加该依赖
 
 **注意：ProjectA在dependencies中添加ProjectB的依赖，并不能使用ProjectB的Gradle中配置，必须单独在自己的Gradle文件中写，  
 或使用类似：apply from: "../module.build.gradle"这样，引用专门的gradle配置文件**
 
 ## 二 通讯模块使用的ARouter
 在Module的gradle中添加,如:[lib.build.gradle](lib.build.gradle)
+java写法
 ```
         javaCompileOptions {
             annotationProcessorOptions {
@@ -39,6 +40,15 @@ module_itext：pdf生成查看模块
             }
         }
 ```
+或者kotlin写法
+```
+   kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+```
+事实上我试了俩种方式都可以，大家随意
 并在Application中初始化，如:[App](lib_base/src/main/java/world/share/lib_base/App.kt)
 ```
     /**
@@ -56,7 +66,8 @@ module_itext：pdf生成查看模块
         ARouter.init(this);
     }
 ```
-**注意：每个需要使用ARouter功能Module都需要重新在build.gradle的dependencies重新配置一下依赖，不然会找不到**
+**注意：每个需要使用ARouter功能Module都需要重新在自己的build.gradle的dependencies重新配置一下依赖，
+不可以通过依赖其他Gradle的方式进行依赖，不然会一直提示找不到路由，原因未知**
 
 # 模块介绍
 

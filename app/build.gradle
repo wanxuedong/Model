@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -13,9 +15,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
         multiDexEnabled true
@@ -80,5 +82,8 @@ dependencies {
         implementation project(path: ':lib_utils')
         implementation project(path: ':lib_widget')
     }
+    //阿里路由
+    api rootProject.ext.dependencies.arouterApi
+    kapt rootProject.ext.dependencies.arouterCompiler
 
 }

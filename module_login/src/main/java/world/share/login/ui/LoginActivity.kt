@@ -48,6 +48,9 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginViewModel>() 
                 })
     }
 
+    override val isUseFullScreenMode: Boolean
+        get() = true
+
     override fun initVariableId(): Int {
         return BR.view_model
     }
