@@ -22,11 +22,11 @@ module_itext：pdf生成查看模块
 3.module.build.gradle :位于项目根目录，项目的module级别(即可独立运行的module)添加引用，定义了module特有的一些设置
 4.lib-build.gradle    :位于项目根目录，所有lib级别(即不能独立运行，只能作为依赖)需要使用的引用在里面进行添加引用(感觉会引用一些用不到的，待优化)
 
-**需要注意的是ProjectA在dependencies中添加ProjectB的依赖，并不能使用ProjectB的Gradle中配置，必须单独在自己的Gradle文件中写，
+**注意：ProjectA在dependencies中添加ProjectB的依赖，并不能使用ProjectB的Gradle中配置，必须单独在自己的Gradle文件中写，
 或使用类似：apply from: "../module.build.gradle"这样，引用专门的gradle配置文件**
 
 ## 二 通讯模块使用的ARouter
-gradle中添加
+在Module的gradle中添加
 ```
         javaCompileOptions {
             annotationProcessorOptions {
@@ -81,10 +81,12 @@ gradle中添加
 # 踩坑
 ### 1.当项目中一直报错找不到DataBinding中的BR文件时
 
-检查Gradle中是否添加了以下配置
+检查Module的Gradle中是否添加了以下配置
+```
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
+```
 
 ### 2.安装apk一直提示找不到SplashActivity
 
