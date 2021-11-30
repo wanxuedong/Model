@@ -1,27 +1,20 @@
-组件模块
-
+# 组件模块
+```
 lib_utils:基本工具类
-
 lib_internet：网络请求模块
-
 lib_logger：日志模块
-
 lib_widget：自定义view模块
-
 lib_common,lib_wheelpicker：年月日选择模块
 
 app：app壳模块
-
 module_login：登录模块
-
 module_main：首页模块
-
 module_itext：pdf生成查看模块
+```
 
 
-要点：
-一：
-gradle新增和特殊的有以下几个文件：
+# 要点：
+## 一 gradle新增和特殊的有以下几个文件：
 1.gradle.properties   :位于项目根目录，通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发
                        isModule为false，即集成式开发，整体模块一起打包运行，并通过app壳进行访问
                        isModule为true，组件式开发，所有module级别可以单独打包运行开发
@@ -31,8 +24,7 @@ gradle新增和特殊的有以下几个文件：
 需要注意的是ProjectA在dependencies中添加ProjectB的依赖，并不能使用ProjectB的Gradle中配置，必须单独在自己的Gradle文件中写，
 或使用类似：apply from: "../module.build.gradle"这样，引用专门的gradle配置文件
 
-二：
-通讯模块使用的ARouter
+## 二 通讯模块使用的ARouter
 gradle中添加
         javaCompileOptions {
             annotationProcessorOptions {
@@ -40,6 +32,7 @@ gradle中添加
             }
         }
 并在Application中初始化
+```
     /**
      * 初始化路由
      * **/
@@ -54,11 +47,14 @@ gradle中添加
         }
         ARouter.init(this);
     }
-需要注意：每个需要使用Arouter功能Module都需要重新在build.gradle的dependencies重新配置一下依赖，不然会找不到，原因未知
+```
+**需要注意：每个需要使用Arouter功能Module都需要重新在build.gradle的dependencies重新配置一下依赖，不然会找不到，原因未知**
 
+# 模块介绍
 
-年月日弹框选择模块
+## 年月日弹框选择模块
 示例：
+```
 
     public static DateTimePicker produce(Activity activity) {
         DateTimePicker dateTimePicker = new DatePicker(activity);
@@ -76,17 +72,17 @@ gradle中添加
         dateTimePicker.setSubmitText("确定");
         return dateTimePicker;
     }
+```
 
 
-
-踩坑
-1.当项目中一直报错找不到Databinding中的BR文件时
+# 踩坑
+### 1.当项目中一直报错找不到Databinding中的BR文件时
 检查Gradle中是否添加了以下配置
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 
-2.安装apk一直提示找不到SplashActivity
+### 2.安装apk一直提示找不到SplashActivity
 检查apk中的classes.dex等文件中发现Activity等文件(给module_login进行打包，任一文件都不在apk内)全部未打包进去
 尝试方案：更换Gradle和Gradle插件版本
         清除项目依赖缓存，并重启
