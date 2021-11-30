@@ -31,7 +31,7 @@ module_itext：pdf生成查看模块
 或使用类似：apply from: "../module.build.gradle"这样，引用专门的gradle配置文件**
 
 ## 二 通讯模块使用的ARouter
-在Module的gradle中添加,如:[lib.build.gradle](lib.build.gradle)
+### 1.在Module的gradle中添加,如:[lib.build.gradle](lib.build.gradle)
 java写法
 ```
         javaCompileOptions {
@@ -49,7 +49,21 @@ java写法
         }
 ```
 事实上我试了俩种方式都可以，大家随意
-并在Application中初始化，如:[App](lib_base/src/main/java/world/share/lib_base/App.kt)
+### 2.Gradle中添加依赖
+```
+    //阿里路由
+    api rootProject.ext.dependencies.arouterApi
+    kapt rootProject.ext.dependencies.arouterCompiler
+```
+实际引用的库位于：[config.gradle](config.gradle),
+即
+```
+com.alibaba:arouter-api:1.4.1
+com.alibaba:arouter-compiler:1.2.2
+```
+**注意：每个需要使用ARouter功能Module都需要重新在自己的build.gradle的dependencies重新配置一下步骤二依赖，
+不可以通过依赖其他Gradle的方式进行依赖，不然会一直提示找不到路由，原因未知**
+### 3.并在Application中初始化，如:[App](lib_base/src/main/java/world/share/lib_base/App.kt)
 ```
     /**
      * 初始化路由
@@ -66,8 +80,6 @@ java写法
         ARouter.init(this);
     }
 ```
-**注意：每个需要使用ARouter功能Module都需要重新在自己的build.gradle的dependencies重新配置一下依赖，
-不可以通过依赖其他Gradle的方式进行依赖，不然会一直提示找不到路由，原因未知**
 
 # 模块介绍
 
