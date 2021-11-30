@@ -49,7 +49,7 @@ java写法
         }
 ```
 事实上我试了俩种方式都可以，大家随意
-### 2.Gradle中添加依赖
+### 2.Gradle中添加依赖,如:[build.gradle](lib_base/build.gradle)
 ```
     //阿里路由
     api rootProject.ext.dependencies.arouterApi
