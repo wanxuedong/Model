@@ -15,7 +15,7 @@ module_itext：pdf生成查看模块
 # 要点：
 ## 一 gradle新增和特殊的有以下几个文件：
 
-1.[gradle.properties](gradle.properties):通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
+1.[gradle.properties](gradle.properties):    通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发  
                                                isModule为false，即集成式开发，整体模块一起打包运行，并通过app壳进行访问  
                                                isModule为true，组件式开发，所有module级别可以单独打包运行开发    
 
@@ -34,26 +34,26 @@ module_itext：pdf生成查看模块
 ### 1.在Module的gradle中添加,如:[lib.build.gradle](lib.build.gradle)
 java写法
 ```
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
+javaCompileOptions {
+    annotationProcessorOptions {
+        arguments = [AROUTER_MODULE_NAME: project.getName()]
+    }
+}
 ```
 或者kotlin写法
 ```
-   kapt {
-            arguments {
-                arg("AROUTER_MODULE_NAME", project.getName())
-            }
-        }
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 ```
 事实上我试了俩种方式都可以，大家随意
 ### 2.Gradle中添加依赖,如:[build.gradle](lib_base/build.gradle)
 ```
-    //阿里路由
-    api rootProject.ext.dependencies.arouterApi
-    kapt rootProject.ext.dependencies.arouterCompiler
+//阿里路由
+api rootProject.ext.dependencies.arouterApi
+kapt rootProject.ext.dependencies.arouterCompiler
 ```
 实际引用的库位于：[config.gradle](config.gradle),
 即
@@ -65,20 +65,19 @@ com.alibaba:arouter-compiler:1.2.2
 不可以通过依赖其他Gradle的方式进行依赖，不然会一直提示找不到路由，原因未知**
 ### 3.并在Application中初始化，如:[App](lib_base/src/main/java/world/share/lib_base/App.kt)
 ```
-    /**
-     * 初始化路由
-     * **/
-    private void initRouter() {
-        //这两行必须写在init之前，否则这些配置在init过程中无效
-        if (BuildConfig.DEBUG) {//第三方工具判断是否是Debug 或者BuildConfig.DEBUG
-            //打印日志
-            ARouter.openLog();
-            //开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险）
-            ARouter.openDebug();
-
-        }
-        ARouter.init(this);
+/**
+ * 初始化阿里路由
+ */
+private fun initRouter() {
+    //这两行必须写在init之前，否则这些配置在init过程中无效
+    if (BuildConfig.DEBUG) { //第三方工具判断是否是Debug 或者BuildConfig.DEBUG
+        //打印日志
+        ARouter.openLog()
+        //开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险）
+        ARouter.openDebug()
     }
+    ARouter.init(this)
+}
 ```
 
 # 模块介绍
@@ -87,22 +86,22 @@ com.alibaba:arouter-compiler:1.2.2
 
 示例：
 ```
-    public static DateTimePicker produce(Activity activity) {
-        DateTimePicker dateTimePicker = new DatePicker(activity);
-        //时间选择框开始结束范围
-        dateTimePicker.setDateRangeStart(CalendarUtils.getCurentYear(), CalendarUtils.getCurentMonth(), 1);
-        dateTimePicker.setDateRangeEnd(CalendarUtils.getCurentYear() + 50, 12, 31);
-        dateTimePicker.setTopLineColor(Color.argb(255, 153, 153, 153));
-        dateTimePicker.setLabelTextColor(Color.argb(255, 102, 102, 102));
-        dateTimePicker.setDividerColor(Color.argb(255, 153, 153, 153));
-        dateTimePicker.setTextColor(Color.argb(255, 102, 102, 102));
-        dateTimePicker.setCancelTextColor(Color.argb(255, 102, 102, 102));
-        dateTimePicker.setSubmitTextColor(Color.argb(255, 102, 102, 102));
-        dateTimePicker.setSelectedItem(CalendarUtils.getCurentYear(), CalendarUtils.getCurentMonth(), CalendarUtils.getCurentDay(), 0, 0);
-        dateTimePicker.setCancelText("取消");
-        dateTimePicker.setSubmitText("确定");
-        return dateTimePicker;
-    }
+public static DateTimePicker produce(Activity activity) {
+    DateTimePicker dateTimePicker = new DatePicker(activity);
+    //时间选择框开始结束范围
+    dateTimePicker.setDateRangeStart(CalendarUtils.getCurentYear(), CalendarUtils.getCurentMonth(), 1);
+    dateTimePicker.setDateRangeEnd(CalendarUtils.getCurentYear() + 50, 12, 31);
+    dateTimePicker.setTopLineColor(Color.argb(255, 153, 153, 153));
+    dateTimePicker.setLabelTextColor(Color.argb(255, 102, 102, 102));
+    dateTimePicker.setDividerColor(Color.argb(255, 153, 153, 153));
+    dateTimePicker.setTextColor(Color.argb(255, 102, 102, 102));
+    dateTimePicker.setCancelTextColor(Color.argb(255, 102, 102, 102));
+    dateTimePicker.setSubmitTextColor(Color.argb(255, 102, 102, 102));
+    dateTimePicker.setSelectedItem(CalendarUtils.getCurentYear(), CalendarUtils.getCurentMonth(), CalendarUtils.getCurentDay(), 0, 0);
+    dateTimePicker.setCancelText("取消");
+    dateTimePicker.setSubmitText("确定");
+    return dateTimePicker;
+}
 ```
 
 
