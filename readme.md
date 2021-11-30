@@ -88,15 +88,15 @@ apply plugin: 'kotlin-kapt'
 
 ### 2.安装apk一直提示找不到SplashActivity
 
-检查apk中的classes.dex等文件中发现Activity等文件(给module_login进行打包，任一文件都不在apk内)全部未打包进去
+检查apk中的classes.dex等文件中发现Activity等文件(给module_login进行打包，任一文件都不在apk内)全部未打包进去 
 尝试方案：更换Gradle和Gradle插件版本
-        清除项目依赖缓存，并重启
+        清除项目依赖缓存，并重启 
         删除idea和.gradle并重启
 
-编译器能正常编译其他项目，说明编译器正常
+编译器能正常编译其他项目，说明编译器正常 
 猜测是否项目依赖关系混乱导致
 
-尝试方案：
+尝试方案： 
 1.新建Java类型TestActivity并重新安装，可正常打开该类，检查apk内，发现整个module_login下只有该类打包进classes.dex等文件
 
 2.新建Kotlin类型MainActivity并重新安装，开始提示原本就应该提示一些module中编译期间就应该提示的错误，如引用爆红等，
