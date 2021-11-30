@@ -1,4 +1,53 @@
-apply from: "../lib.build.gradle"
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+        multiDexEnabled true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    //过滤重复的文件
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
+}
 
 dependencies {
 
@@ -9,5 +58,68 @@ dependencies {
     api project(path: ':lib_internet')
     api project(path: ':lib_common')
     api project(path: ':lib_wheelpicker')
+    //阿里路由
+    api rootProject.ext.dependencies.arouterApi
+    kapt rootProject.ext.dependencies.arouterCompiler
+    api rootProject.ext.androidx.appcompat
+    api rootProject.ext.material.material
+    annotationProcessor rootProject.ext.androidx.constraintlayout
+    //multidex
+    api rootProject.ext.dependencies.multidex
+    //leakcanary
+    api rootProject.ext.dependencies.leakcanary
+    //lifecycle
+    api rootProject.ext.dependencies.lifecycleLivedata
+    api rootProject.ext.dependencies.lifecycleViewmodel
+    //navigation
+    api rootProject.ext.dependencies.navigationFragment
+    api rootProject.ext.dependencies.navigationUi
+    //multidex
+    api rootProject.ext.dependencies.multidex
+    //rxjava
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+    //network
+    api rootProject.ext.dependencies.okhttp
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava"]
+    //rx管理View的生命周期
+    api(rootProject.ext.dependencies.rxlifecycle) {
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle-components"]) {
+        exclude group: 'com.android.support'
+    }
+    //Glide
+    api rootProject.ext.dependencies.glide
+    api rootProject.ext.dependencies.glidecompiler
+    api rootProject.ext.dependencies.glidetransfer
+    //PhotoView
+    api rootProject.ext.dependencies.PhotoView
+    api rootProject.ext.dependencies.core_ktx
+    api rootProject.ext.dependencies.kotlin_lib
+    //pictureselector
+    api rootProject.ext.dependencies.pictureselector
+    //mmkv
+    api rootProject.ext.dependencies.mmkv
+    //lottie
+    api rootProject.ext.dependencies.lottie
+    //viewmodel
+    api rootProject.ext.dependencies.lifecycleViewmodel
+    //koin_core
+    api rootProject.ext.dependencies.koin_core
+    //koin_java
+    api rootProject.ext.dependencies.koin_java
+    //loadsir
+    api rootProject.ext.dependencies.loadsir
+    //fragmentationx
+    api rootProject.ext.dependencies.fragmentationx
+    //swipeback
+    api rootProject.ext.dependencies.swipeback
+    //rxlifecycle-components
+    api rootProject.ext.dependencies.rxlifecycle-components
+    //utilcodex
+    api rootProject.ext.dependencies.utilcodex
 
 }

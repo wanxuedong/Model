@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">baseutils</string>
+    <string name="main_press_again">再按一次退出应用</string>
 </resources>

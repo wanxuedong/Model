@@ -1,16 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Model" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+    <style name="NoTitle" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <!--        <item name="android:windowAnimationStyle">@style/Animation_Activity</item>-->
+        <item name="android:windowContentTransitions" tools:ignore="NewApi">true</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:textAllCaps">false</item>
+        <!--        <item name="android:windowAnimationStyle">@style/Animation_Activity</item>-->
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <!--取消水波纹效果-->
+        <!--        <item name="android:colorControlHighlight">@android:color/transparent</item>-->
+    </style>
+
+    <style name="TextInputWhiteStyle" parent="AppTheme">
+        <!--输入框提示字体色-->
+        <item name="android:textColorHint">#ffffff</item>
+        <!--输入框下划线默认颜色-->
+        <!--        <item name="colorControlNormal">@color/white</item>-->
+        <!--输入框下划线选中状态色-->
+        <item name="colorControlActivated">@color/white</item>
+        <!--输入框光标颜色-->
+        <item name="colorControlHighlight">@color/white</item>
+    </style>
+    <!--Toolbar-->
+    <style name="actionBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
     </style>
 </resources>

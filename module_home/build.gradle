@@ -10,8 +10,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':lib_base')
-    //阿里路由
-    api rootProject.ext.dependencies.arouterApi
-    annotationProcessor rootProject.ext.dependencies.arouterCompiler
+    //组件依赖基础库
+    api project(':lib_base')
 }

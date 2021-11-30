@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -26,17 +28,20 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    //过滤重复的文件
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
 }
-
 
 dependencies {
     //multidex
     api rootProject.ext.dependencies.multidex
-    api 'androidx.appcompat:appcompat:1.3.1'
-    api 'com.google.android.material:material:1.4.0'
+    api rootProject.ext.androidx.appcompat
+    api rootProject.ext.material.material
     //阿里路由
     api rootProject.ext.dependencies.arouterApi
-    annotationProcessor rootProject.ext.dependencies.arouterCompiler
+    kapt rootProject.ext.dependencies.arouterCompiler
     //leakcanary
     api rootProject.ext.dependencies.leakcanary
     //lifecycle
@@ -64,10 +69,32 @@ dependencies {
     }
     //Glide
     api rootProject.ext.dependencies.glide
+    api rootProject.ext.dependencies.glidecompiler
+    api rootProject.ext.dependencies.glidetransfer
     //PhotoView
     api rootProject.ext.dependencies.PhotoView
-    api "androidx.core:core-ktx:1.6.0"
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api rootProject.ext.dependencies.core_ktx
+    api rootProject.ext.dependencies.kotlin_lib
     //pictureselector
     api rootProject.ext.dependencies.pictureselector
+    //mmkv
+    api rootProject.ext.dependencies.mmkv
+    //lottie
+    api rootProject.ext.dependencies.lottie
+    //viewmodel
+    api rootProject.ext.dependencies.lifecycleViewmodel
+    //koin_core
+    api rootProject.ext.dependencies.koin_core
+    //koin_java
+    api rootProject.ext.dependencies.koin_java
+    //loadsir
+    api rootProject.ext.dependencies.loadsir
+    //fragmentationx
+    api rootProject.ext.dependencies.fragmentationx
+    //swipeback
+    api rootProject.ext.dependencies.swipeback
+    //rxlifecycle-components
+    api rootProject.ext.dependencies.rxlifecycle-components
+    //utilcodex
+    api rootProject.ext.dependencies.utilcodex
 }
