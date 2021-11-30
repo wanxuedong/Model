@@ -1,7 +1,6 @@
 package world.share.lib_base.mvvm
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import com.alibaba.android.arouter.launcher.ARouter
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import world.share.baseutils.statusbar.StatusBarUtil
@@ -21,6 +19,7 @@ import world.share.lib_base.data.DataRepository
 import world.share.lib_base.mvvm.StandardActivity.BaseRxActivity
 import world.share.lib_base.mvvm.viewmodel.AppViewModelFactory
 import world.share.lib_base.mvvm.viewmodel.BaseViewModel
+import world.share.lib_base.route.RouteCenter
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -162,20 +161,16 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         }
     }
 
+    /**
+     * 防重复点击监听
+     * **/
     open fun onClick(id: Int) {}
 
     /**
      * 路由页面跳转
      */
     fun jump(target: String?) {
-        ARouter.getInstance().build(target).navigation()
-    }
-
-    /**
-     * 普通页面跳转
-     */
-    fun jump(tClass: Class<*>?) {
-        startActivity(Intent(this, tClass))
+        target?.let { RouteCenter.navigate(it) }
     }
 
     /**

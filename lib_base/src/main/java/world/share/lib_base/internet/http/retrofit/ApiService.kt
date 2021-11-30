@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import world.share.lib_base.bean.UserBean
 import world.share.lib_base.internet.bean.BaseResponse
 import world.share.lib_base.internet.bean.BookBean
 import world.share.lib_base.internet.http.RequestUrl
@@ -19,6 +20,18 @@ interface ApiService {
      */
     @POST(RequestUrl.login)
     @FormUrlEncoded
-    fun login(@Field("username") username: String,
-              @Field("password") password: String): Observable<BaseResponse<BookBean>>
+    fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Observable<BaseResponse<BookBean>>
+
+    /**
+     * 登录
+     */
+    @POST("user/login")
+    @FormUrlEncoded
+    fun pwdLogin(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): Observable<BaseResponse<UserBean>>
 }

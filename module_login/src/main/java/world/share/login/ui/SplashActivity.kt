@@ -1,15 +1,13 @@
 package world.share.login.ui
 
 import android.text.TextUtils
-import com.alibaba.android.arouter.facade.annotation.Route
 import world.share.baseutils.MvHelper
 import world.share.lib_base.RouterUrl.HOME_ACTIVITY
 import world.share.lib_base.RouterUrl.LOGIN_ACTIVITY
-import world.share.lib_base.RouterUrl.SPLASH_ACTIVITY
+import world.share.lib_base.constant.UserConstant.USER_NAME
 import world.share.lib_base.mvvm.BaseActivity
 import world.share.login.BR
 import world.share.login.R
-import world.share.login.data.MvConstant
 import world.share.login.databinding.LoginActivitySplashBinding
 import world.share.login.model.LoginViewModel
 
@@ -26,12 +24,12 @@ class SplashActivity : BaseActivity<LoginActivitySplashBinding, LoginViewModel>(
 
     override fun initData() {
         super.initData()
-        if (TextUtils.isEmpty(MvHelper.decodeString(MvConstant.USER_NAME))) {
+        if (TextUtils.isEmpty(MvHelper.decodeString(USER_NAME))) {
             jump(LOGIN_ACTIVITY)
             finish()
             return
         }
-        MvHelper.encode(MvConstant.USER_NAME, "")
+        MvHelper.encode(USER_NAME, "")
         jump(HOME_ACTIVITY)
         finish()
     }

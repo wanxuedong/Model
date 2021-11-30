@@ -5,7 +5,7 @@ package world.share.lib_base.internet.bean
  */
 class BaseResponse<T> {
     var code = 0
-    private var message: String
+    var message: String
     var result: T? = null
         private set
 

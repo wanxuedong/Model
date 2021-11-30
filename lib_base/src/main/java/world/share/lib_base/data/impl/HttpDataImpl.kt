@@ -1,6 +1,7 @@
 package world.share.lib_base.data.impl
 
 import io.reactivex.Observable
+import world.share.lib_base.bean.UserBean
 import world.share.lib_base.data.HttpDataSource
 import world.share.lib_base.internet.bean.BaseResponse
 import world.share.lib_base.internet.bean.BookBean
@@ -15,5 +16,9 @@ class HttpDataImpl(private val apiService: ApiService) : HttpDataSource {
 
     override fun login(account: String, pwd: String): Observable<BaseResponse<BookBean>> {
         return apiService.login(account, pwd)
+    }
+
+    override fun userLogin(account: String, pwd: String): Observable<BaseResponse<UserBean>> {
+        return apiService.pwdLogin(account, pwd)
     }
 }

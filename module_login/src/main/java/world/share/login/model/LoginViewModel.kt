@@ -2,9 +2,14 @@ package world.share.login.model
 
 import androidx.databinding.ObservableField
 import world.share.baseutils.AppManager
+import world.share.baseutils.ToastUtil
 import world.share.lib_base.App
 import world.share.lib_base.RouterUrl
+import world.share.lib_base.bean.UserBean
 import world.share.lib_base.data.DataRepository
+import world.share.lib_base.internet.bean.BaseResponse
+import world.share.lib_base.internet.rxjava.ApiSubscriberHelper
+import world.share.lib_base.internet.rxjava.RxThreadHelper
 import world.share.lib_base.mvvm.command.BindingAction
 import world.share.lib_base.mvvm.command.BindingCommand
 import world.share.lib_base.mvvm.command.BindingConsumer
@@ -44,5 +49,30 @@ open class LoginViewModel(application: App, model: DataRepository) :
     })
 
     private fun loginByPwd() {
+        if (account.get().isNullOrBlank() || pwd.get().isNullOrBlank()) {
+            ToastUtil.show("账号或密码不能为空")
+            return
+        }
+        model.apply {
+            userLogin(account.get()!!, pwd.get()!!)
+                .compose(RxThreadHelper.rxSchedulerHelper(this@LoginViewModel))
+                .doOnSubscribe {  }
+                .subscribe(object : ApiSubscriberHelper<BaseResponse<UserBean>>() {
+                    override fun onSuccess(t: BaseResponse<UserBean>) {
+                        if (t.code == 0) {
+                            t.result?.let {
+                                saveUserData(it)
+                            }
+                            RouteCenter.navigate(RouterUrl.HOME_ACTIVITY)
+                            AppManager.instance.finishAllActivity()
+                        }
+                    }
+
+                    override fun onError(msg: String?) {
+                        ToastUtil.show(msg)
+                    }
+
+                })
+        }
     }
 }
