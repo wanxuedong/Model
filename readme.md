@@ -18,11 +18,8 @@ module_itext：pdf生成查看模块
 1.gradle.properties   :位于项目根目录，通过更改gradle.properties下的isModule来更改开发模式为集成式开发还是组件化开发
                        isModule为false，即集成式开发，整体模块一起打包运行，并通过app壳进行访问
                        isModule为true，组件式开发，所有module级别可以单独打包运行开发
-
 2.config.gradle       :位于项目根目录，项目中设计到全部官方库和三方库全部在此定义，并在其他gradle中引用，只在gradle之间使用
-
 3.module.build.gradle :位于项目根目录，项目的module级别(即可独立运行的module)添加引用，定义了module特有的一些设置
-
 4.lib-build.gradle    :位于项目根目录，所有lib级别(即不能独立运行，只能作为依赖)需要使用的引用在里面进行添加引用(感觉会引用一些用不到的，待优化)
 
 **需要注意的是ProjectA在dependencies中添加ProjectB的依赖，并不能使用ProjectB的Gradle中配置，必须单独在自己的Gradle文件中写，
@@ -30,11 +27,13 @@ module_itext：pdf生成查看模块
 
 ## 二 通讯模块使用的ARouter
 gradle中添加
+```
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+```
 并在Application中初始化
 ```
     /**
@@ -52,7 +51,7 @@ gradle中添加
         ARouter.init(this);
     }
 ```
-**需要注意：每个需要使用Arouter功能Module都需要重新在build.gradle的dependencies重新配置一下依赖，不然会找不到，原因未知**
+**注意：每个需要使用Arouter功能Module都需要重新在build.gradle的dependencies重新配置一下依赖，不然会找不到**
 
 # 模块介绍
 
@@ -60,7 +59,6 @@ gradle中添加
 
 示例：
 ```
-
     public static DateTimePicker produce(Activity activity) {
         DateTimePicker dateTimePicker = new DatePicker(activity);
         //时间选择框开始结束范围
