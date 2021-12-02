@@ -27,7 +27,6 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginViewModel>() 
 
     override fun initData() {
         super.initData()
-        binding.btnLogin.isEnabled = false
         val accountSubject = PublishSubject.create<String>()
         val pwdSubject = PublishSubject.create<String>()
         binding.etAccount.addTextChangedListener(EditTextMonitor(accountSubject))
@@ -40,16 +39,11 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginViewModel>() 
                     account.isNotBlank() && pwd.isNotBlank()
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    binding.btnLogin.isEnabled = it
                     binding.btnLogin.setTextColor(
-                        if (it) Color.parseColor("#000000") else Color.parseColor("#ffffff")
+                        if (it) Color.parseColor("#ffffff") else Color.parseColor("#858585")
                     )
-                    binding.btnLogin.setBackgroundResource(if (it) R.drawable.shape_round_white else R.drawable.gray_btn_corner_10dp)
+                    binding.btnLogin.setBackgroundResource(if (it) R.drawable.shape_round_blue else R.drawable.gray_btn_corner_10dp)
                 })
-    }
-
-    override fun useBaseLayout(): Boolean {
-        return false
     }
 
     override val isUseFullScreenMode: Boolean
@@ -58,4 +52,5 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginViewModel>() 
     override fun initVariableId(): Int {
         return BR.viewModel
     }
+
 }

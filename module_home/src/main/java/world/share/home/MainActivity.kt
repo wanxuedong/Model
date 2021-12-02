@@ -5,7 +5,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.alibaba.android.arouter.facade.annotation.Route
 import world.share.baseutils.AppManager
-import world.share.baseutils.ToastUtil
+import world.share.widget.toast.ToastUtil
 import world.share.home.databinding.ActivityHomeBinding
 import world.share.home.model.MainViewModel
 import world.share.lib_base.RouterUrl.HOME_ACTIVITY
@@ -31,9 +31,6 @@ class MainActivity : BaseActivity<ActivityHomeBinding, MainViewModel>() {
             Navigation.findNavController(this, R.id.nav_host_fragment_activity_home)
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
-
-    override val isUseBlackFontWithStatusBar: Boolean
-        protected get() = true
 
     override fun initVariableId(): Int {
         return BR.view_model

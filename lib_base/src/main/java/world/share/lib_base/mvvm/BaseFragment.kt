@@ -107,9 +107,21 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         super.onViewCreated(view, savedInstanceState)
         //私有的初始化DataBinding和ViewModel方法
         initViewDataBinding()
+        initView()
+        initData()
         //私有的ViewModel与View的契约事件回调逻辑
         registerUIChangeLiveDataCallBack()
     }
+
+    /**
+     * 初始化视图
+     * **/
+    open fun initView(){}
+
+    /**
+     * 初始化数据
+     * **/
+    open fun initData(){}
 
     /**
      * 注入绑定

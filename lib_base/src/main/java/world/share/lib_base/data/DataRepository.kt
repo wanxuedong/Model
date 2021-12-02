@@ -32,5 +32,4 @@ class DataRepository constructor(
         return httpDataSource.userLogin(account, pwd)
     }
 
-
 }

@@ -15,6 +15,7 @@ import org.koin.core.context.startKoin
 import world.share.baseutils.AppManager
 import world.share.baseutils.BaseUtil
 import world.share.baseutils.CallBack
+import world.share.widget.toast.ToastUtil
 
 /**
  * @author mac
@@ -35,6 +36,8 @@ open class App : MultiDexApplication(), CallBack<Application?> {
             androidContext(this@App)
             modules(allModule)
         }
+        //Toast初始化
+        ToastUtil.init(this)
         //Activity全局管理
         AppManager.instance.setAppManager(this)
     }

@@ -3,7 +3,7 @@ package world.share.lib_base.data.impl
 import com.blankj.utilcode.util.GsonUtils
 import com.google.gson.reflect.TypeToken
 import world.share.baseutils.MvHelper
-import world.share.baseutils.ToastUtil
+import world.share.widget.toast.ToastUtil
 import world.share.baseutils.threadutil.LifeRunnable
 import world.share.baseutils.threadutil.ThreadX
 import world.share.lib_base.bean.UserBean

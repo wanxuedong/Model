@@ -60,7 +60,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                binding:onClickCommand="@{view_model.scrollToTopCommand}"
                 tools:text="这是标题这是标题这是标题这是标题这是标题" />
 
             <androidx.appcompat.widget.AppCompatImageView

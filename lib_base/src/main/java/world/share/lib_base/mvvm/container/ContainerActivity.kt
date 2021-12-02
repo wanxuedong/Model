@@ -23,10 +23,6 @@ class ContainerActivity : BaseActivity<CommonContainerBinding, CommonViewModel>(
         return BR.view_model
     }
 
-    override fun useBaseLayout(): Boolean {
-        return false
-    }
-
     override fun initData() {
         val fragmentPath: String? = intent.getStringExtra(FRAGMENT)
         if (fragmentPath.isNullOrBlank()) {

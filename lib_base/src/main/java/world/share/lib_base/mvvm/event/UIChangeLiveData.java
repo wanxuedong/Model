@@ -10,6 +10,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author wan
+ * 创建日期：2021/12/1
+ * 描述：通用页面触发事件
+ */
 public class UIChangeLiveData extends SingleLiveEvent {
     public SingleLiveEvent<String> showLoadingEvent;
     public SingleLiveEvent<Void> dismissDialogEvent;

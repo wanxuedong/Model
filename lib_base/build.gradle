@@ -63,7 +63,7 @@ dependencies {
     kapt rootProject.ext.dependencies.arouterCompiler
     api rootProject.ext.androidx.appcompat
     api rootProject.ext.material.material
-    annotationProcessor rootProject.ext.androidx.constraintlayout
+    kapt rootProject.ext.androidx.constraintlayout
     //multidex
     api rootProject.ext.dependencies.multidex
     //leakcanary
@@ -121,5 +121,7 @@ dependencies {
     api rootProject.ext.dependencies.rxlifecycle-components
     //utilcodex
     api rootProject.ext.dependencies.utilcodex
+    //boommenu
+    api rootProject.ext.dependencies.boommenu
 
 }

@@ -7,7 +7,7 @@ import world.share.lib_base.App
 import world.share.lib_base.data.DataRepository
 import world.share.lib_base.mvvm.viewmodel.BaseViewModel
 
-class DashboardViewModel(application: App, model: DataRepository) :
+class CollectViewModel(application: App, model: DataRepository) :
     BaseViewModel<DataRepository>(application, model){
     private val mText: MutableLiveData<String>
     val text: LiveData<String>

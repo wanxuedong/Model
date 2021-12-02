@@ -1,6 +1,5 @@
 package world.share.lib_base.mvvm.viewmodel
 
-import android.app.Application
 import android.os.Bundle
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
@@ -27,6 +26,7 @@ import java.lang.ref.WeakReference
 open class BaseViewModel<M : BaseModel>(application: App, val model: M) :
     AndroidViewModel(application), IBaseViewModel,
     Consumer<Disposable?> {
+
     /**
      * 弱引用持有
      * **/
@@ -57,7 +57,7 @@ open class BaseViewModel<M : BaseModel>(application: App, val model: M) :
             setToolbarRightClick()
     })
 
-    // 子类重写
+    // 右键点击事件
     open fun setToolbarRightClick() {
 
     }
@@ -82,32 +82,43 @@ open class BaseViewModel<M : BaseModel>(application: App, val model: M) :
     override fun onResume() {}
     override fun onPause() {}
 
-    //管理RxJava，主要针对RxJava异步操作造成的内存泄漏
-    private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
-
-    val scrollToTopCommand: BindingCommand<Void> =
-        BindingCommand(BindingAction { scrollToTop() })
-
-    fun scrollToTop() {
-        uC.scrollTopEvent?.call()
-    }
-
-    open fun addSubscribe(disposable: Disposable) {
-        mCompositeDisposable.add(disposable)
+    /**
+     * 展示加载等待框
+     * @param title 加载提示
+     * **/
+    fun showLoading(title: String? = "加载中") {
+        uC.showLoadingEvent.postValue(title)
     }
 
     /**
-     * 关闭界面
-     */
-    fun finish() {
-        uC.finishEvent?.call()
+     * 展关闭加载等待框
+     * **/
+    fun dismissLoading() {
+        uC.dismissDialogEvent.call()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        model.onCleared()
-        //ViewModel销毁时会执行，同时取消所有异步任务
-        mCompositeDisposable.clear()
+    /**
+     * 跳转页面
+     *
+     * @param routePath    所跳转的目的Activity类
+     * @param bundle 跳转所携带的信息
+     */
+    fun startActivity(routePath: String, bundle: Bundle? = null) {
+        val params: HashMap<String, Any> = HashMap()
+        params[ParameterField.ROUTE_PATH] = routePath
+        if (bundle != null) {
+            params[ParameterField.BUNDLE] = bundle
+        }
+        uC.startActivityEvent.postValue(params)
+    }
+
+    private fun startFragment(routePath: String, bundle: Bundle? = null) {
+        val params: HashMap<String, Any> = HashMap()
+        params[ParameterField.ROUTE_PATH] = routePath
+        if (bundle != null) {
+            params[ParameterField.BUNDLE] = bundle
+        }
+        uC.startFragmentEvent.postValue(params)
     }
 
     /**
@@ -123,13 +134,55 @@ open class BaseViewModel<M : BaseModel>(application: App, val model: M) :
         params[ParameterField.ROUTE_PATH] = routePath
         if (bundle != null) params[ParameterField.BUNDLE] = bundle
         if (requestCode != null) params[ParameterField.REQUEST_CODE] = requestCode
-        uC.startContainerActivityEvent?.postValue(params)
+        uC.startContainerActivityEvent.postValue(params)
     }
 
+    /**
+     * 关闭界面
+     */
+    fun finish() {
+        uC.finishEvent.call()
+    }
+
+    /**
+     * 返回上一层
+     */
+    fun onBackPressed() {
+        uC.onBackPressedEvent.call()
+    }
+
+    /**
+     * 管理RxJava，主要针对RxJava异步操作造成的内存泄漏
+     * **/
+    private var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
+
+    /**
+     * 添加事件
+     * **/
     override fun accept(disposable: Disposable?) {
         disposable?.let { addSubscribe(it) }
     }
 
+    /**
+     * 添加事件
+     * **/
+    open fun addSubscribe(disposable: Disposable) {
+        mCompositeDisposable.add(disposable)
+    }
+
+    /**
+     * 当前页面关闭后清除全部相关数据服务等,由viewModel提供生命周期监听
+     * **/
+    override fun onCleared() {
+        super.onCleared()
+        model.onCleared()
+        //ViewModel销毁时会执行，同时取消所有异步任务
+        mCompositeDisposable.clear()
+    }
+
+    /**
+     * ARouter传输数据字段
+     * **/
     object ParameterField {
         const val ROUTE_PATH = "ROUTE_PATH"
         const val BUNDLE = "BUNDLE"

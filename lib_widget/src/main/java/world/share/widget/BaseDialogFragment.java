@@ -75,6 +75,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
      **/
     private View rootView;
 
+    /**
+     * 对话框主题
+     **/
+    private int dialogStyle = R.style.TransParent_Dialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +115,20 @@ public abstract class BaseDialogFragment extends DialogFragment {
         return width;
     }
 
+    public void setGravity(int gravity) {
+        if (gravity == -1) {
+            return;
+        }
+        this.gravity = gravity;
+    }
+
+    /**
+     * 添加对话框进出场动画
+     **/
+    public int setDialogStyle() {
+        return -1;
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -120,7 +139,7 @@ public abstract class BaseDialogFragment extends DialogFragment {
      * 读取对话框风格
      **/
     private void loadStyle() {
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.TransParent_Dialog);
+        setStyle(DialogFragment.STYLE_NO_TITLE, dialogStyle);
     }
 
     /**
@@ -148,6 +167,17 @@ public abstract class BaseDialogFragment extends DialogFragment {
         window.setGravity(getGravity());
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        //添加对话框进出场动画
+        if (setDialogStyle() != -1) {
+            dialog.getWindow().getAttributes().windowAnimations = setDialogStyle();
+        }
+        return dialog;
+    }
+
     @Nullable
     @Override
     public final View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -170,7 +200,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
      **/
     protected abstract int getDialogView();
 
-    protected void initView(View rootView){};
+    protected void initView(View rootView) {
+    }
 
     private void initData() {
 

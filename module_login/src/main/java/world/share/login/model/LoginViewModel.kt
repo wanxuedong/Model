@@ -1,8 +1,9 @@
 package world.share.login.model
 
 import androidx.databinding.ObservableField
+import androidx.fragment.app.FragmentActivity
 import world.share.baseutils.AppManager
-import world.share.baseutils.ToastUtil
+import world.share.widget.toast.ToastUtil
 import world.share.lib_base.App
 import world.share.lib_base.RouterUrl
 import world.share.lib_base.bean.UserBean
@@ -15,6 +16,7 @@ import world.share.lib_base.mvvm.command.BindingCommand
 import world.share.lib_base.mvvm.command.BindingConsumer
 import world.share.lib_base.mvvm.viewmodel.BaseViewModel
 import world.share.lib_base.route.RouteCenter
+import world.share.widget.toast.ToastBuild
 
 /**
  * @author wan
@@ -40,23 +42,28 @@ open class LoginViewModel(application: App, model: DataRepository) :
     })
 
     val registerClickCommand: BindingCommand<Void> = BindingCommand(BindingAction {
-        startContainerActivity(RouterUrl.LOGIN_ACTIVITY)
+        RouteCenter.navigate(RouterUrl.REGISTER_ACTIVITY)
+        AppManager.instance.finishAllActivity()
     })
 
-    val touristClickCommand:BindingCommand<Void> = BindingCommand(BindingAction {
+    val touristClickCommand: BindingCommand<Void> = BindingCommand(BindingAction {
         RouteCenter.navigate(RouterUrl.HOME_ACTIVITY)
         AppManager.instance.finishAllActivity()
     })
 
     private fun loginByPwd() {
         if (account.get().isNullOrBlank() || pwd.get().isNullOrBlank()) {
-            ToastUtil.show("账号或密码不能为空")
+            ToastUtil.materialShow(
+                AppManager.instance.currentActivity() as FragmentActivity?, ToastBuild(
+                    "账号或密码不能为空"
+                )
+            )
             return
         }
         model.apply {
             userLogin(account.get()!!, pwd.get()!!)
                 .compose(RxThreadHelper.rxSchedulerHelper(this@LoginViewModel))
-                .doOnSubscribe {  }
+                .doOnSubscribe { }
                 .subscribe(object : ApiSubscriberHelper<BaseResponse<UserBean>>() {
                     override fun onSuccess(t: BaseResponse<UserBean>) {
                         if (t.code == 0) {

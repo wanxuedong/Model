@@ -109,7 +109,7 @@
                 android:layout_marginEnd="60dp"
                 android:background="@drawable/gray_btn_corner_10dp"
                 android:text="@string/login_login"
-                android:textColor="#ffffff"
+                android:textColor="@color/greyColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
                 binding:onClickCommand="@{viewModel.btnLoginClick}" />
@@ -125,7 +125,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btnLogin"
-                binding:onClickCommand="@{viewModel.registerClickCommand}" />
+                binding:onClickCommand="@{viewModel.registerClickCommand}"
+                android:visibility="gone"/>
 
             <TextView
                 android:layout_width="wrap_content"

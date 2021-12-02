@@ -12,5 +12,7 @@
     <color name="titleColor">#313131</color>
     <color name="noticeColor">#696969</color>
     <color name="light_transparent">#16000000</color>
+    <color name="redColor">#FD5D5D</color>
+    <color name="deepRedColor">#E64E4E</color>
 
 </resources>

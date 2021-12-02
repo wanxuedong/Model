@@ -69,6 +69,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         setStatusBar()
         //私有的初始化dataBinding和ViewModel方法
         initViewDataBinding()
+        initView();
         initData()
         initEvent()
     }
@@ -131,7 +132,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
      * @return 是否需要标题栏
      */
     protected open fun useBaseLayout(): Boolean {
-        return true
+        return false
     }
 
     /**
@@ -152,6 +153,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         return ViewModelProvider(this, get<AppViewModelFactory>()).get(modelClass)
     }
 
+    open fun initView(){}
     open fun initData() {}
     open fun initEvent() {}
     override fun onClick(v: View) {

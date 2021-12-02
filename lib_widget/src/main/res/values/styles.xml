@@ -65,4 +65,10 @@
             <enum name="horizontal" value="1" />
         </attr>
     </declare-styleable>
+
+    <!--提示性Toast关闭打开动画-->
+    <style name="ToastNotice" parent="@android:style/Theme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/toast_notice_enter</item>
+        <item name="android:windowExitAnimation">@anim/toast_notice_exit</item>
+    </style>
 </resources>
