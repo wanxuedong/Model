@@ -131,7 +131,7 @@ class ToastFragment() : BaseDialogFragment() {
     }
 
     override fun getGravity(): Int {
-        return Gravity.TOP
+        return Gravity.BOTTOM
     }
 
     override fun setDialogStyle(): Int {

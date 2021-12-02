@@ -23,11 +23,12 @@ object BoomMenuFactory {
      * 创建首页弹出框
      * **/
     fun createHomeButton(button: BoomMenuButton, activity: FragmentActivity) {
+        button.normalColor = R.color.blueColor
         button.buttonEnum = ButtonEnum.TextInsideCircle
         button.piecePlaceEnum = PiecePlaceEnum.DOT_3_1
         button.buttonPlaceEnum = ButtonPlaceEnum.SC_3_3
         button.addBuilder(createButtonBuilder(
-            R.drawable.bat, R.string.app_name
+            R.drawable.cat, R.string.topic_debate, R.color.redColor
         ) {
             ToastUtil.materialShow(
                 activity.supportFragmentManager,
@@ -45,10 +46,10 @@ object BoomMenuFactory {
             )
         })
         button.addBuilder(createButtonBuilder(
-            R.drawable.bat, R.string.app_name
+            R.drawable.bear, R.string.love_publishing, R.color.greenColor
         ) { ToastUtil.show("2") })
         button.addBuilder(createButtonBuilder(
-            R.drawable.bat, R.string.app_name
+            R.drawable.bee, R.string.contribution, R.color.blueColor
         ) { ToastUtil.show("3") })
     }
 
@@ -58,10 +59,12 @@ object BoomMenuFactory {
     private fun createButtonBuilder(
         normalImageRes: Int,
         normalTextRes: Int,
+        normalColorRes: Int,
         listener: OnBMClickListener
     ): TextInsideCircleButton.Builder {
         return TextInsideCircleButton.Builder()
             .normalImageRes(normalImageRes)
+            .normalColorRes(normalColorRes)
             .normalTextRes(normalTextRes).listener(listener)
     }
 
