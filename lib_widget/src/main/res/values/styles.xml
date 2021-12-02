@@ -66,9 +66,19 @@
         </attr>
     </declare-styleable>
 
-    <!--提示性Toast关闭打开动画-->
-    <style name="ToastNotice" parent="@android:style/Theme.Dialog">
-        <item name="android:windowEnterAnimation">@anim/toast_notice_enter</item>
-        <item name="android:windowExitAnimation">@anim/toast_notice_exit</item>
+    <!--Toast提示在底部进出动画-->
+    <style name="ToastShowBottom" parent="@android:style/Theme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/toast_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/toast_bottom_exit</item>
+    </style>
+    <!--Toast提示在中间进出动画-->
+    <style name="ToastShowCenter" parent="@android:style/Theme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/toast_center_enter</item>
+        <item name="android:windowExitAnimation">@anim/toast_center_exit</item>
+    </style>
+    <!--Toast提示在顶部进出动画-->
+    <style name="ToastShowTop" parent="@android:style/Theme.Dialog">
+        <item name="android:windowEnterAnimation">@anim/toast_top_enter</item>
+        <item name="android:windowExitAnimation">@anim/toast_top_exit</item>
     </style>
 </resources>

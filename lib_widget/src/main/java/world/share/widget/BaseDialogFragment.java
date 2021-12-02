@@ -42,8 +42,8 @@ public abstract class BaseDialogFragment extends DialogFragment {
     private boolean outClick = false;
 
     /**
-     * 弹出后会点击屏幕或物理返回键
-     * true 如果cancelOutSide为true，点击周边dialog消失，如果cancelOutSide为false，点击返回键dialog小时
+     * 弹出后点击屏幕或物理返回键
+     * true 如果cancelOutSide为true，点击周边dialog消失，如果cancelOutSide为false，点击返回键dialog消失
      * false dialog不消失
      **/
     private boolean cancelable = false;
@@ -203,11 +203,11 @@ public abstract class BaseDialogFragment extends DialogFragment {
     protected void initView(View rootView) {
     }
 
-    private void initData() {
+    protected void initData() {
 
     }
 
-    private void initEvent() {
+    protected void initEvent() {
 
     }
 

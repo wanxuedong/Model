@@ -3,7 +3,6 @@ package world.share.login.model
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
 import world.share.baseutils.AppManager
-import world.share.widget.toast.ToastUtil
 import world.share.lib_base.App
 import world.share.lib_base.RouterUrl
 import world.share.lib_base.bean.UserBean
@@ -17,6 +16,8 @@ import world.share.lib_base.mvvm.command.BindingConsumer
 import world.share.lib_base.mvvm.viewmodel.BaseViewModel
 import world.share.lib_base.route.RouteCenter
 import world.share.widget.toast.ToastBuild
+import world.share.widget.toast.ToastClick
+import world.share.widget.toast.ToastUtil
 
 /**
  * @author wan
@@ -54,9 +55,18 @@ open class LoginViewModel(application: App, model: DataRepository) :
     private fun loginByPwd() {
         if (account.get().isNullOrBlank() || pwd.get().isNullOrBlank()) {
             ToastUtil.materialShow(
-                AppManager.instance.currentActivity() as FragmentActivity?, ToastBuild(
-                    "账号或密码不能为空"
-                )
+                (AppManager.instance.currentActivity() as FragmentActivity?)?.supportFragmentManager,
+                ToastBuild(
+                    "账号或密码不能为空!"
+                ).setToastClick(object : ToastClick() {
+                    override fun confirm() {
+                        super.confirm()
+                        ToastUtil.materialShow(
+                            (AppManager.instance.currentActivity() as FragmentActivity?)?.supportFragmentManager,
+                            ToastBuild("别点了,快输入吧!")
+                        )
+                    }
+                })
             )
             return
         }

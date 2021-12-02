@@ -9,6 +9,7 @@ import com.nightonke.boommenu.ButtonEnum
 import com.nightonke.boommenu.Piece.PiecePlaceEnum
 import world.share.lib_base.R
 import world.share.widget.toast.ToastBuild
+import world.share.widget.toast.ToastClick
 import world.share.widget.toast.ToastUtil
 
 /**
@@ -28,7 +29,20 @@ object BoomMenuFactory {
         button.addBuilder(createButtonBuilder(
             R.drawable.bat, R.string.app_name
         ) {
-            ToastUtil.materialShow(activity, ToastBuild("您有重要的消息"))
+            ToastUtil.materialShow(
+                activity.supportFragmentManager,
+                ToastBuild("您有重要的消息").setAlwaysShow(true).setToastClick(object : ToastClick() {
+                    override fun confirm() {
+                        super.confirm()
+                        ToastUtil.show("你点我干什么?")
+                    }
+
+                    override fun cancel() {
+                        super.cancel()
+                        ToastUtil.show("啊！我被关闭了!")
+                    }
+                })
+            )
         })
         button.addBuilder(createButtonBuilder(
             R.drawable.bat, R.string.app_name

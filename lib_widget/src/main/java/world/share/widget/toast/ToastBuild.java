@@ -1,6 +1,6 @@
 package world.share.widget.toast;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * @author wan
@@ -17,9 +17,41 @@ public class ToastBuild {
     public int type = 1;
 
     /**
+     * 展示内容
+     **/
+    private String message;
+
+    /**
+     * 吐司距离底部或顶部的距离
+     **/
+    private int showTime = 3000;
+
+    /**
+     * 吐司展示时长
+     **/
+    private float margin = 80F;
+
+    /**
+     * 吐司点击事件回调
+     **/
+    private ToastClick toastClick;
+
+    /**
+     * 吐司位置
+     **/
+    private int gravity = -1;
+
+    /**
+     * Toast是否一直展示
+     * true 展示不消失，此时关闭按钮会显示
+     * false 展示后一会消失
+     **/
+    private boolean alwaysShow = false;
+
+    /**
      * 上下文，material风格需要
      **/
-    public FragmentActivity activity;
+    public FragmentManager manager;
 
     public ToastBuild(String message) {
         this.message = message;
@@ -30,29 +62,62 @@ public class ToastBuild {
         return this;
     }
 
-    public ToastBuild setActivity(FragmentActivity activity) {
-        this.activity = activity;
+    public ToastBuild setManager(FragmentManager manager) {
+        this.manager = manager;
         return this;
     }
 
-    /**
-     * 展示内容
-     **/
-    public String message;
+    public ToastBuild setMessage(String message) {
+        this.message = message;
+        return this;
+    }
 
-    /**
-     * 吐司展示时长
-     **/
-    public int showTime = 3000;
+    public String getMessage() {
+        return message;
+    }
 
-    /**
-     * 吐司点击事件回调
-     **/
-    public ToastClick toastClick;
+    public ToastBuild setShowTime(int showTime) {
+        this.showTime = showTime;
+        return this;
+    }
 
-    /**
-     * 吐司位置
-     **/
-    public int gravity = -1;
+    public int getShowTime() {
+        return showTime;
+    }
 
+    public ToastBuild setMargin(float margin) {
+        this.margin = margin;
+        return this;
+    }
+
+    public float getMargin() {
+        return margin;
+    }
+
+    public ToastBuild setToastClick(ToastClick toastClick) {
+        this.toastClick = toastClick;
+        return this;
+    }
+
+    public ToastClick getToastClick() {
+        return toastClick;
+    }
+
+    public ToastBuild setGravity(int gravity) {
+        this.gravity = gravity;
+        return this;
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public ToastBuild setAlwaysShow(boolean alwaysShow) {
+        this.alwaysShow = alwaysShow;
+        return this;
+    }
+
+    public boolean isAlwaysShow() {
+        return alwaysShow;
+    }
 }

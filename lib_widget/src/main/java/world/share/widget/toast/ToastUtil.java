@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * 封装Toast
@@ -70,11 +70,12 @@ public class ToastUtil {
     /**
      * material风格Toast
      *
-     * @param activity 上下文
-     * @param builder  material Toast风格参数
+     * @param manager 上下文
+     * @param builder material Toast风格参数
      */
-    public static void materialShow(FragmentActivity activity, ToastBuild builder) {
-        show(builder.setType(2).setActivity(activity));
+    // TODO: 2021/12/2 manager的引用可能导致内存泄漏，待处理
+    public static void materialShow(FragmentManager manager, ToastBuild builder) {
+        show(builder.setType(2).setManager(manager));
     }
 
 
@@ -88,7 +89,7 @@ public class ToastUtil {
             throw new RuntimeException("please init first");
         }
         synchronized (ToastUtil.class) {
-            if (TextUtils.isEmpty(builder.message)) {
+            if (TextUtils.isEmpty(builder.getMessage())) {
                 return;
             }
             if (System.currentTimeMillis() - lastTime > INTERVAlTIME) {
@@ -115,14 +116,16 @@ public class ToastUtil {
      **/
     private static void realShow(ToastBuild builder) {
         if (builder.type == 1) {
-            Toast.makeText(application, builder.message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(application, builder.getMessage(), Toast.LENGTH_SHORT).show();
         } else if (builder.type == 2) {
             ToastFragment toastFragment = new ToastFragment();
-            toastFragment.toastClick = builder.toastClick;
-            toastFragment.message = builder.message;
-            toastFragment.setGravity(builder.gravity);
-            toastFragment.setShowTime(builder.showTime);
-            toastFragment.show(builder.activity.getSupportFragmentManager(), "toast_notice");
+            toastFragment.setToastClick(builder.getToastClick());
+            toastFragment.message = builder.getMessage();
+            toastFragment.setGravity(builder.getGravity());
+            toastFragment.setShowTime(builder.getShowTime());
+            toastFragment.setMargin(builder.getMargin());
+            toastFragment.setShowClose(builder.isAlwaysShow());
+            toastFragment.show(builder.manager, "toast_notice");
         }
     }
 

@@ -1,11 +1,12 @@
 package world.share.baseutils;
 
+import android.app.Application;
 import android.content.Context;
+import android.view.WindowManager;
 
 /**
  * dp和sp之间切换的工具
  */
-
 public class ScreenUtil {
 
     /**
@@ -25,6 +26,24 @@ public class ScreenUtil {
     }
 
     /**
+     * 获取屏幕宽度
+     **/
+    public static int getScreenWidth(Application application) {
+        WindowManager wm = (WindowManager) application
+                .getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getWidth();
+    }
+
+    /**
+     * 获取屏幕高度
+     **/
+    public static int getScreenHeight(Application application) {
+        WindowManager wm = (WindowManager) application
+                .getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getHeight();
+    }
+
+    /**
      * 获得状态栏的高度
      *
      * @param context
@@ -33,13 +52,13 @@ public class ScreenUtil {
     public static int getStatusHeight(Context context) {
 
         int statusHeight = -1;
-        try{
+        try {
             Class<?> clazz = Class.forName("com.android.internal.R$dimen");
             Object object = clazz.newInstance();
             int height = Integer.parseInt(clazz.getField("status_bar_height")
                     .get(object).toString());
             statusHeight = context.getResources().getDimensionPixelSize(height);
-        }catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return statusHeight;
