@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_tabs">
+        <item>关注</item>
+        <item>推荐</item>
+        <item>乐事</item>
+        <item>爱屋及乌</item>
+        <item>萌宠</item>
+        <item>探险</item>
+        <item>科技</item>
+        <item>头条</item>
+        <item>一起玩</item>
+    </string-array>
+</resources>

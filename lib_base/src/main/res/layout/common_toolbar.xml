@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="view_model"
+            name="viewModel"
             type="world.share.lib_base.mvvm.viewmodel.BaseViewModel" />
 
         <variable
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="?actionBarSize"
                 android:gravity="center"
-                android:onClick="@{(x)->view_model.finish()}"
+                android:onClick="@{(x)->viewModel.finish()}"
                 android:paddingLeft="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toolbar_contentTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="?actionBarSize"
                 android:layout_centerHorizontal="true"
                 android:ellipsize="end"
                 android:gravity="center"
@@ -53,7 +53,7 @@
                 android:paddingStart="@dimen/dp_20"
                 android:paddingEnd="@dimen/dp_20"
                 android:singleLine="true"
-                android:text="@{view_model.tvTitle}"
+                android:text="@{viewModel.tvTitle}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,8 +71,8 @@
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                binding:onClickCommand="@{view_model.ivToolbarIconOnClick}"
-                binding:src="@{view_model.ivToolbarIconRes}"
+                binding:onClickCommand="@{viewModel.ivToolbarIconOnClick}"
+                binding:src="@{viewModel.ivToolbarIconRes}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:src="@drawable/ic_setting" />
 
@@ -83,12 +83,12 @@
                 android:gravity="center"
                 android:maxLength="6"
                 android:padding="@dimen/dp_10"
-                android:text="@{view_model.toolbarRightText}"
+                android:text="@{viewModel.toolbarRightText}"
                 android:textColor="@color/black"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                binding:onClickCommand="@{view_model.ivToolbarIconOnClick}"
+                binding:onClickCommand="@{viewModel.ivToolbarIconOnClick}"
                 tools:text="设置" />
 
             <View

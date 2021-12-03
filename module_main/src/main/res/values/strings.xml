@@ -1,0 +1,5 @@
+<resources>
+    <string name="title_home">最新</string>
+    <string name="title_dashboard">收藏</string>
+    <string name="title_notifications">Me</string>
+</resources>

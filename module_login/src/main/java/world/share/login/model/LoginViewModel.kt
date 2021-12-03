@@ -4,7 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
 import world.share.baseutils.AppManager
 import world.share.lib_base.App
-import world.share.lib_base.RouterUrl
+import world.share.lib_base.constant.RouterUrl
 import world.share.lib_base.bean.UserBean
 import world.share.lib_base.data.DataRepository
 import world.share.lib_base.internet.bean.BaseResponse
@@ -48,7 +48,7 @@ open class LoginViewModel(application: App, model: DataRepository) :
     })
 
     val touristClickCommand: BindingCommand<Void> = BindingCommand(BindingAction {
-        RouteCenter.navigate(RouterUrl.HOME_ACTIVITY)
+        RouteCenter.navigate(RouterUrl.MAIN_ACTIVITY)
         AppManager.instance.finishAllActivity()
     })
 
@@ -80,7 +80,7 @@ open class LoginViewModel(application: App, model: DataRepository) :
                             t.result?.let {
                                 saveUserData(it)
                             }
-                            RouteCenter.navigate(RouterUrl.HOME_ACTIVITY)
+                            RouteCenter.navigate(RouterUrl.MAIN_ACTIVITY)
                             AppManager.instance.finishAllActivity()
                         }
                     }

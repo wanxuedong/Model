@@ -1,0 +1,20 @@
+apply from: "../module.build.gradle"
+
+android {
+    defaultConfig {
+        //如果是独立模块，则使用当前组件的包名
+        if (isModule.toBoolean()) {
+            applicationId "world.share.collect"
+        }
+    }
+    //统一资源前缀，规范资源引用
+    resourcePrefix "collect_"
+}
+
+dependencies {
+    //组件依赖基础库
+    api project(':lib_base')
+    //阿里路由
+    api rootProject.ext.dependencies.arouterApi
+    kapt rootProject.ext.dependencies.arouterCompiler
+}

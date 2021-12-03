@@ -107,21 +107,66 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         super.onViewCreated(view, savedInstanceState)
         //私有的初始化DataBinding和ViewModel方法
         initViewDataBinding()
-        initView()
-        initData()
         //私有的ViewModel与View的契约事件回调逻辑
         registerUIChangeLiveDataCallBack()
     }
 
     /**
+     * 正常创建启动Fragment情况 onViewCreated-onLazyInitView-onEnterAnimationEnd
+     * Viewpager创建实例 onViewCreated-onLazyInitView
+     */
+    final override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
+        if (enableLazy()) {
+            //页面数据初始化视图
+            initView()
+            //页面数据初始化方法
+            initData()
+            //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
+            initEvent()
+        }
+    }
+
+    /**
+     * 入栈动画完毕后执行
+     */
+    override fun onEnterAnimationEnd(savedInstanceState: Bundle?) {
+        super.onEnterAnimationEnd(savedInstanceState)
+        if (!enableLazy()) {
+            //页面数据初始化视图
+            initView()
+            //页面数据初始化方法
+            initData()
+            //页面事件监听的方法，一般用于ViewModel层转到View层的事件注册
+            initEvent()
+        }
+    }
+
+    /**
+     * 是否开启懒加载,默认true
+     *
+     * @return
+     */
+    protected open fun enableLazy(): Boolean {
+        return true
+    }
+
+    /**
      * 初始化视图
      * **/
-    open fun initView(){}
+    open fun initView() {}
 
     /**
      * 初始化数据
      * **/
-    open fun initData(){}
+    open fun initData() {}
+
+    /**
+     * 初始化事件
+     * **/
+    open fun initEvent() {
+
+    }
 
     /**
      * 注入绑定
@@ -241,7 +286,7 @@ abstract class BaseFragment<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
      * @return 是否需要标题栏
      */
     protected open fun useBaseLayout(): Boolean {
-        return true
+        return false
     }
 
     /**

@@ -2,8 +2,8 @@ package world.share.login.ui
 
 import android.text.TextUtils
 import world.share.baseutils.MvHelper
-import world.share.lib_base.RouterUrl.HOME_ACTIVITY
-import world.share.lib_base.RouterUrl.LOGIN_ACTIVITY
+import world.share.lib_base.constant.RouterUrl.MAIN_ACTIVITY
+import world.share.lib_base.constant.RouterUrl.LOGIN_ACTIVITY
 import world.share.lib_base.constant.UserConstant.USER_NAME
 import world.share.lib_base.mvvm.BaseActivity
 import world.share.login.BR
@@ -30,7 +30,7 @@ class SplashActivity : BaseActivity<LoginActivitySplashBinding, LoginViewModel>(
             return
         }
         MvHelper.encode(USER_NAME, "")
-        jump(HOME_ACTIVITY)
+        jump(MAIN_ACTIVITY)
         finish()
     }
 
@@ -38,7 +38,7 @@ class SplashActivity : BaseActivity<LoginActivitySplashBinding, LoginViewModel>(
         get() = true
 
     override fun initVariableId(): Int {
-        return BR.view_model
+        return BR.viewModel
     }
 
 }

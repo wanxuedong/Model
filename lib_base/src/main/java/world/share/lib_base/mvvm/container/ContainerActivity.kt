@@ -20,7 +20,7 @@ class ContainerActivity : BaseActivity<CommonContainerBinding, CommonViewModel>(
     }
 
     override fun initVariableId(): Int {
-        return BR.view_model
+        return BR.viewModel
     }
 
     override fun initData() {

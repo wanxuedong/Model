@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
-import world.share.lib_base.RouterUrl.LOGIN_ACTIVITY
+import world.share.lib_base.constant.RouterUrl.LOGIN_ACTIVITY
 import world.share.lib_base.mvvm.BaseActivity
 import world.share.login.BR
 import world.share.login.R

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="world.share.home.model.HomeViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="world.share.home.HomeFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/home_viewpager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/home_tab_layout" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:background="@drawable/home_top_bg" />
+
+                <RelativeLayout
+                    android:id="@+id/home_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/notification_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:padding="15dp"
+                        app:srcCompat="@drawable/home_notifications_none_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/notification_music"
+                        android:layout_toRightOf="@+id/notification_status"
+                        android:background="@drawable/home_search_input"
+                        android:hint="@string/home_search_hint"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="8dp"
+                        android:textSize="12sp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/notification_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="15dp"
+                        app:srcCompat="@drawable/home_pause_circle_outline_24dp" />
+
+                </RelativeLayout>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/home_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_36"
+                    android:layout_below="@+id/home_header"
+                    android:background="@color/transparent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabMode="scrollable"
+                    app:tabRippleColor="@color/darkBlueColor"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/littleGreyColor" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.nightonke.boommenu.BoomMenuButton
+            android:id="@+id/boom_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="70dp" />
+
+    </RelativeLayout>
+
+</layout>

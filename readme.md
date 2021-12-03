@@ -84,6 +84,8 @@ private fun initRouter() {
     ARouter.init(this)
 }
 ```
+***注意: 每个module的一级路由都不可以重复，新建的module记得在app的Gradle中添加依赖,
+且确保Activity的路由声明一定与其所在module的一级路由保持一致***
 
 # 模块介绍
 
@@ -120,7 +122,7 @@ apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 ```
 
-### 2.安装apk一直提示找不到SplashActivity
+### 3.安装apk一直提示找不到SplashActivity
 
 检查apk中的classes.dex等文件中发现Activity等文件(给module_login进行打包，任一文件都不在apk内)全部未打包进去  
 尝试方案：更换Gradle和Gradle插件版本  

@@ -16,7 +16,7 @@ import world.share.widget.R
  * 创建日期：2021/12/02
  * 描述：自定义Toast样式
  */
-class ToastFragment() : BaseDialogFragment() {
+open class ToastFragment() : BaseDialogFragment() {
 
     /**
      * 占位布局
@@ -70,9 +70,11 @@ class ToastFragment() : BaseDialogFragment() {
 
     override fun initView(rootView: View?) {
         super.initView(rootView)
-        noticeSeat = rootView!!.findViewById(R.id.toast_notice_seat)
-        noticeMessage = rootView!!.findViewById(R.id.toast_notice_message)
-        noticeClose = rootView!!.findViewById(R.id.toast_notice_close)
+        rootView?.let {
+            noticeSeat = it.findViewById(R.id.toast_notice_seat)
+            noticeMessage = it.findViewById(R.id.toast_notice_message)
+            noticeClose = it.findViewById(R.id.toast_notice_close)
+        }
     }
 
     override fun initData() {

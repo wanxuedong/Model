@@ -220,7 +220,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
     /**
      * 更改状态栏颜色，只有非全屏模式下有效
      */
-    protected val statusBarColor: Int
+    protected open val statusBarColor: Int
         get() = R.color.white
 
     /**

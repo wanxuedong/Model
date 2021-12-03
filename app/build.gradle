@@ -75,7 +75,10 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     if (!isModule.toBoolean()) {
         implementation project(path: ':module_login')
+        implementation project(path: ':module_main')
         implementation project(path: ':module_home')
+        implementation project(path: ':module_collect')
+        implementation project(path: ':module_user')
         implementation project(path: ':lib_logger')
         implementation project(path: ':lib_internet')
         implementation project(path: ':lib_widget')

@@ -123,5 +123,7 @@ dependencies {
     api rootProject.ext.dependencies.utilcodex
     //boommenu
     api rootProject.ext.dependencies.boommenu
+    //navigation
+    api rootProject.ext.dependencies.navigation
 
 }

@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="login_app_name">login</string>
     <string name="login_input_account">账户</string>
     <string name="login_input_password">密码</string>
     <string name="welcome" tools:ignore="ResourceName">德莱联盟</string>

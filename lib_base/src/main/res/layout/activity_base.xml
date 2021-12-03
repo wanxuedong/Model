@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="view_model"
+            name="viewModel"
             type="world.share.lib_base.mvvm.viewmodel.BaseViewModel" />
     </data>
 
@@ -15,5 +16,10 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
+        <include
+            layout="@layout/common_toolbar"
+            bind:viewModel="@{viewModel}" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </layout>

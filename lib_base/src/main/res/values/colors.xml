@@ -11,9 +11,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_toolbar">#FAFAFA</color>
+    <color name="darkBlueColor">#000B27</color>
+    <color name="transparent">#00000000</color>
     <color name="redColor">#FD5D5D</color>
     <color name="greenColor">#37E749</color>
     <color name="blueColor">#42ADFF</color>
-    <color name="greyColor">#232323</color>
+    <color name="greyColor">#535353</color>
+    <color name="shallowGreyColor">#9A9A9A</color>
+    <color name="littleGreyColor">#F6F6F6</color>
     <color name="deepRedColor">#E64E4E</color>
 </resources>
