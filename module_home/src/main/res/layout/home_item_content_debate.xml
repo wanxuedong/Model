@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/debate_head"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_margin="15dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/userCircleImageStyle"
+            app:strokeColor="@color/shallowGreyColor"
+            app:strokeWidth="1dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debate_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="优秀视频搬运工"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@+id/debate_head"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/home_debate_blue_lable"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="自动报名"
+            android:textColor="@color/blueColor"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/debate_head"
+            app:layout_constraintLeft_toRightOf="@+id/debate_head" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="15dp"
+            android:src="@drawable/home_clear_12dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debate_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:maxHeight="150dp"
+            android:text="你们认为男女应该平等么?"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/debate_head" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debate_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:maxHeight="150dp"
+            android:text="这是一篇真是故事，是我朋友的亲戚于去年发生的.我是一个生意人，家里有一儿一女..."
+            android:textColor="@color/greyColor"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@+id/debate_title" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/debate_mood_good"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:src="@drawable/home_mood_good"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/debate_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debate_mood_good_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="18dp"
+            android:text="200"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/debate_mood_good"
+            app:layout_constraintTop_toBottomOf="@+id/debate_content" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/debate_mood_bad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/home_mood_bad"
+            app:layout_constraintLeft_toRightOf="@+id/debate_mood_good_txt"
+            app:layout_constraintTop_toBottomOf="@+id/debate_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debate_mood_bad_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="18dp"
+            android:text="200"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@+id/debate_mood_bad"
+            app:layout_constraintTop_toBottomOf="@+id/debate_content" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/debate_mood_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/home_share_16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/debate_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lineGreyColor"
+            app:layout_constraintTop_toBottomOf="@+id/debate_mood_share" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

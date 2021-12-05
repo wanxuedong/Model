@@ -34,7 +34,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="100dp"
                     android:background="@drawable/home_top_bg" />
 
                 <RelativeLayout
@@ -58,6 +58,7 @@
                         android:layout_toRightOf="@+id/notification_status"
                         android:background="@drawable/home_search_input"
                         android:hint="@string/home_search_hint"
+                        android:textColorHint="@color/littleBlueColor"
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="8dp"
                         android:textSize="12sp" />
@@ -82,12 +83,12 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tabIndicatorColor="@color/white"
+                    app:tabIndicatorColor="@color/greyColor"
                     app:tabIndicatorFullWidth="false"
                     app:tabMode="scrollable"
-                    app:tabRippleColor="@color/darkBlueColor"
-                    app:tabSelectedTextColor="@color/white"
-                    app:tabTextColor="@color/littleGreyColor" />
+                    app:tabRippleColor="@color/black"
+                    app:tabSelectedTextColor="@color/black"
+                    app:tabTextColor="@color/greyColor" />
 
             </RelativeLayout>
 

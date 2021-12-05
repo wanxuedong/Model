@@ -125,5 +125,11 @@ dependencies {
     api rootProject.ext.dependencies.boommenu
     //navigation
     api rootProject.ext.dependencies.navigation
+    //quicklyadapter
+    api rootProject.ext.dependencies.quicklyadapter
+    //SmartRefreshLayout
+    api rootProject.ext.dependencies.SmartRefreshLayout
+    //SmartRefreshHeader
+    api rootProject.ext.dependencies.SmartRefreshHeader
 
 }

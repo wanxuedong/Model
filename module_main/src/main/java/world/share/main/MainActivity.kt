@@ -7,8 +7,8 @@ import com.czl.lib_base.adapter.ViewPagerFmAdapter
 import me.yokeyword.fragmentation.SupportFragment
 import world.share.baseutils.AppManager
 import world.share.lib_base.constant.RouterUrl.COLLECT_FRAGMENT
-import world.share.lib_base.constant.RouterUrl.MAIN_ACTIVITY
 import world.share.lib_base.constant.RouterUrl.HOME_FRAGMENT
+import world.share.lib_base.constant.RouterUrl.MAIN_ACTIVITY
 import world.share.lib_base.constant.RouterUrl.USER_FRAGMENT
 import world.share.lib_base.mvvm.BaseActivity
 import world.share.lib_base.route.RouteCenter
@@ -104,6 +104,6 @@ class MainActivity : BaseActivity<MainActivityHomeBinding, MainViewModel>() {
     }
 
     override val statusBarColor: Int
-        get() = R.color.darkBlueColor
+        get() = R.color.blueColor
 
 }
