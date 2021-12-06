@@ -80,13 +80,24 @@ class MainActivity : BaseActivity<MainActivityHomeBinding, MainViewModel>() {
     private fun initViewPager() {
         // 设置不可滑动
         binding.homeViewpager.isUserInputEnabled = false
-        val homeFragment = RouteCenter.navigate(HOME_FRAGMENT) as SupportFragment
-        val collectFragment = RouteCenter.navigate(COLLECT_FRAGMENT) as SupportFragment
-        val userFragment = RouteCenter.navigate(USER_FRAGMENT) as SupportFragment
-        val fragments = arrayListOf(homeFragment, collectFragment, userFragment)
-        binding.homeViewpager.apply {
-            adapter = ViewPagerFmAdapter(supportFragmentManager, lifecycle, fragments)
-            offscreenPageLimit = fragments.size
+        val fragments = mutableListOf<SupportFragment>()
+        RouteCenter.navigate(HOME_FRAGMENT)?.let {
+            val homeFragment = RouteCenter.navigate(HOME_FRAGMENT) as SupportFragment
+            fragments.add(homeFragment)
+        }
+        RouteCenter.navigate(COLLECT_FRAGMENT)?.let {
+            val collectFragment = RouteCenter.navigate(COLLECT_FRAGMENT) as SupportFragment
+            fragments.add(collectFragment)
+        }
+        RouteCenter.navigate(USER_FRAGMENT)?.let {
+            val userFragment = RouteCenter.navigate(USER_FRAGMENT) as SupportFragment
+            fragments.add(userFragment)
+        }
+        if (fragments.size > 0) {
+            binding.homeViewpager.apply {
+                adapter = ViewPagerFmAdapter(supportFragmentManager, lifecycle, fragments)
+                offscreenPageLimit = fragments.size
+            }
         }
     }
 

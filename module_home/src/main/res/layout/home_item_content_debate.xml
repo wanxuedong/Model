@@ -9,8 +9,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/debate_head"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="15dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintLeft_toLeftOf="parent"

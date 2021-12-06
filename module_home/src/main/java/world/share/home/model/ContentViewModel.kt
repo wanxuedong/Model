@@ -13,11 +13,12 @@ import world.share.lib_base.mvvm.viewmodel.BaseViewModel
  */
 class ContentViewModel(application: App, model: DataRepository) :
     BaseViewModel<DataRepository>(application, model) {
-    private val mText: MutableLiveData<String> = MutableLiveData()
+    private val mText: MutableLiveData<String>
     val text: LiveData<String>
         get() = mText
 
     init {
+        mText = MutableLiveData()
         mText.value = "This is dashboard fragment"
     }
 }

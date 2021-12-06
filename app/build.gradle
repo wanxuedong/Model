@@ -79,6 +79,7 @@ dependencies {
         implementation project(path: ':module_home')
         implementation project(path: ':module_collect')
         implementation project(path: ':module_user')
+        implementation project(path: ':module_video')
         implementation project(path: ':lib_logger')
         implementation project(path: ':lib_internet')
         implementation project(path: ':lib_widget')
