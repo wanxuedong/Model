@@ -71,4 +71,14 @@ object RouterUrl {
      * 用户中心页
      * **/
     const val USER_CENTER_ACTIVITY = "$USER_GROUP/UserCenterActivity"
+
+    /**
+     * module_audioPlayer统一group
+     * **/
+    private const val AUDIO_PLAYER_GROUP = "/audioPlayer"
+
+    /**
+     * 音频播放器
+     * **/
+    const val AUDIO_PLAYER_ACTIVITY = "$USER_GROUP/AudioPlayerActivity"
 }

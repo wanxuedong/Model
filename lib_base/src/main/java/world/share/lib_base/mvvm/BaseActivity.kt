@@ -1,6 +1,7 @@
 package world.share.lib_base.mvvm
 
 import android.content.DialogInterface
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -153,7 +154,7 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
         return ViewModelProvider(this, get<AppViewModelFactory>()).get(modelClass)
     }
 
-    open fun initView(){}
+    open fun initView() {}
     open fun initData() {}
     open fun initEvent() {}
     override fun onClick(v: View) {
@@ -212,33 +213,64 @@ abstract class BaseActivity<V : ViewDataBinding, VM : BaseViewModel<*>> : BaseRx
     }
 
     /**
-     * 是否设置成透明状态栏，即就是全屏模式
+     * 是否设置成透明状态栏,true：透明状态栏，false：非透明状态栏
+     */
+    protected open val isStatusBarTransparent: Boolean
+        get() = false
+
+    /**
+     * 是否设置成全屏，true：全屏，false：非全屏
      */
     protected open val isUseFullScreenMode: Boolean
         get() = false
 
     /**
      * 更改状态栏颜色，只有非全屏模式下有效
+     * @return statusBarColor 状态栏颜色
      */
     protected open val statusBarColor: Int
         get() = R.color.white
 
     /**
-     * 是否改变状态栏文字颜色为黑色，默认为黑色
+     * 屏幕方向,默认垂直，true：垂直，false：横屏
+     * **/
+    protected open val verticalOrientation: Boolean
+        get() = true
+
+    /**
+     * 是否改变状态栏文字颜色为黑色，true：透明，false：黑色
      */
     protected open val isUseBlackFontWithStatusBar: Boolean
         get() = false
 
+    /**
+     * 设置状态栏状态
+     * **/
     private fun setStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (isUseFullScreenMode) {
+            if (isStatusBarTransparent) {
                 StatusBarUtil.transparencyBar(this)
             } else {
                 StatusBarUtil.setStatusBarColor(this, statusBarColor)
             }
             if (isUseBlackFontWithStatusBar) {
-                StatusBarUtil.setLightStatusBar(this, true, isUseFullScreenMode)
+                StatusBarUtil.setLightStatusBar(this, true, isStatusBarTransparent)
             }
+        }
+        var window = window
+        var param = window.attributes
+        var bit = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        if (isUseFullScreenMode) {
+            param.flags = param.flags or bit
+        } else {
+            param.flags = param.flags and bit.inv()
+
+        }
+        window.attributes = param
+        if (verticalOrientation) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        } else {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         }
     }
 

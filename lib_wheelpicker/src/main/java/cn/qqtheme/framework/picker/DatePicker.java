@@ -98,6 +98,7 @@ public class DatePicker extends DateTimePicker {
      *
      * @deprecated use setRangeStart and setRangeEnd instead
      */
+    @Override
     @Deprecated
     public void setRange(int startYear, int endYear) {
         super.setRange(startYear, endYear);

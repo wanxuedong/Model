@@ -53,7 +53,9 @@ public class PersistentCookieStore implements CookieStore {
                     if (encodedCookie != null) {
                         Cookie decodedCookie = decodeCookie(encodedCookie);
                         if (decodedCookie != null) {
-                            if (!cookies.containsKey(entry.getKey())) cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
+                            if (!cookies.containsKey(entry.getKey())) {
+                                cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
+                            }
                             cookies.get(entry.getKey()).put(name, decodedCookie);
                         }
                     }
@@ -185,8 +187,9 @@ public class PersistentCookieStore implements CookieStore {
     @Override
     public List<Cookie> getAllCookie() {
         List<Cookie> ret = new ArrayList<>();
-        for (String key : cookies.keySet())
+        for (String key : cookies.keySet()) {
             ret.addAll(cookies.get(key).values());
+        }
         return ret;
     }
 
@@ -194,7 +197,9 @@ public class PersistentCookieStore implements CookieStore {
     public List<Cookie> getCookie(HttpUrl url) {
         List<Cookie> ret = new ArrayList<>();
         Map<String, Cookie> mapCookie = cookies.get(url.host());
-        if (mapCookie != null) ret.addAll(mapCookie.values());
+        if (mapCookie != null) {
+            ret.addAll(mapCookie.values());
+        }
         return ret;
     }
 
@@ -205,7 +210,9 @@ public class PersistentCookieStore implements CookieStore {
      * @return 序列化之后的string
      */
     private String encodeCookie(SerializableHttpCookie cookie) {
-        if (cookie == null) return null;
+        if (cookie == null) {
+            return null;
+        }
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(os);

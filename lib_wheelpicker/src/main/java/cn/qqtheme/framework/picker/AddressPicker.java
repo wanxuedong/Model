@@ -45,6 +45,7 @@ public class AddressPicker extends LinkagePicker<Province, City, County> {
     /**
      * 设置默认选中的省市县
      */
+    @Override
     public void setSelectedItem(Province province, City city, County county) {
         super.setSelectedItem(province, city, county);
     }

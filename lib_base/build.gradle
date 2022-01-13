@@ -58,6 +58,7 @@ dependencies {
     api project(path: ':lib_internet')
     api project(path: ':lib_common')
     api project(path: ':lib_wheelpicker')
+//    api project(path: ':lib_audioengine')
     //阿里路由
     api rootProject.ext.dependencies.arouterApi
     kapt rootProject.ext.dependencies.arouterCompiler

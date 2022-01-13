@@ -95,6 +95,7 @@ public class TimePicker extends DateTimePicker {
     /**
      * @deprecated use setRangeStart and setRangeEnd instead
      */
+    @Override
     @Deprecated
     public void setRange(int startHour, int endHour) {
         super.setTimeRangeStart(startHour, 0);

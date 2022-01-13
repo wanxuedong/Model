@@ -163,15 +163,17 @@ public class FileUtils {
                     Bitmap bit = BitmapFactory.decodeFile(src.getPath());
 
                     if (bit.getWidth() > 700) {
-                        if (bit.getHeight() > 700)
+                        if (bit.getHeight() > 700) {
                             bit = Bitmap.createScaledBitmap(bit, 700, 700, true);
-                        else
+                        } else {
                             bit = Bitmap.createScaledBitmap(bit, 700, bit.getHeight(), true);
+                        }
                     } else {
-                        if (bit.getHeight() > 700)
+                        if (bit.getHeight() > 700) {
                             bit = Bitmap.createScaledBitmap(bit, bit.getWidth(), 700, true);
-                        else
+                        } else {
                             bit = Bitmap.createScaledBitmap(bit, bit.getWidth(), bit.getHeight(), true);
+                        }
                     }
 
                     bit.compress(Bitmap.CompressFormat.JPEG, 90, out);
@@ -190,14 +192,11 @@ public class FileUtils {
             out.close();
 
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("Compressing ERror :  ", e.getLocalizedMessage());
+            Log.e("Compressing :", e.getLocalizedMessage());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            Log.e("Compressing ERror IOE:  ", e.getLocalizedMessage());
+            Log.e("Compressing IOE:", e.getLocalizedMessage());
         } catch (Exception e) {
-            // TODO: handle exception
-            Log.e("Compressing ERror Other:  ", e.getLocalizedMessage());
+            Log.e("Compressing Other:", e.getLocalizedMessage());
         }
     }
 
@@ -244,17 +243,15 @@ public class FileUtils {
             /**
              * Delete File from Source folder...
              */
-            if (src.delete());
+            if (src.delete()) {
+            }
 
         }  catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            Log.e("Compressing ERror :  ", e.getLocalizedMessage());
+            Log.e("Compressing :", e.getLocalizedMessage());
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            Log.e("Compressing ERror IOE:  ", e.getLocalizedMessage());
+            Log.e("Compressing IOE:", e.getLocalizedMessage());
         } catch (Exception e) {
-            // TODO: handle exception
-            Log.e("Compressing ERror Other:  ", e.getLocalizedMessage());
+            Log.e("Compressing Other:", e.getLocalizedMessage());
         }
     }
 

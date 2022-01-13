@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -58,9 +59,9 @@
                         android:layout_toRightOf="@+id/notification_status"
                         android:background="@drawable/home_search_input"
                         android:hint="@string/home_search_hint"
-                        android:textColorHint="@color/littleBlueColor"
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="8dp"
+                        android:textColorHint="@color/greyColor"
                         android:textSize="12sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -70,7 +71,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="15dp"
-                        app:srcCompat="@drawable/home_pause_circle_outline_24dp" />
+                        app:srcCompat="@drawable/home_queue_music_24dp"
+                        binding:onClickCommand="@{viewModel.musicOnClick}" />
 
                 </RelativeLayout>
 
