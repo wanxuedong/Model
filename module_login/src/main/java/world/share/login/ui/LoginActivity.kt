@@ -46,7 +46,7 @@ class LoginActivity : BaseActivity<LoginActivityLoginBinding, LoginViewModel>() 
                 })
     }
 
-    override val isUseFullScreenMode: Boolean
+    override val isStatusBarTransparent: Boolean
         get() = true
 
     override fun initVariableId(): Int {

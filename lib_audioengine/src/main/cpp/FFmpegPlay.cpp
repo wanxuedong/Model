@@ -164,9 +164,10 @@ void FFmpegPlay::decodeAudioThread() {
     pFormatCtx->interrupt_callback.opaque = this;
 
     //打开多媒体文件
-    if (avformat_open_input(&pFormatCtx, source, NULL, NULL) != 0) {
+    int code;
+    if (code = avformat_open_input(&pFormatCtx, source, NULL, NULL) != 0) {
         if (LOG_DEBUG) {
-            LOGE("can not open url :%s", source);
+            LOGE("can not open url :%s , code: %d", source, code);
         }
         if (audioCallJava != NULL) {
             audioCallJava->onCallError(CHILD_THREAD, 1001, (char *) "can not open url");

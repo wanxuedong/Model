@@ -114,7 +114,7 @@ class MainActivity : BaseActivity<MainActivityHomeBinding, MainViewModel>() {
         }
     }
 
-    override val statusBarColor: Int
-        get() = R.color.blueColor
+    override val isStatusBarTransparent: Boolean
+        get() = true
 
 }

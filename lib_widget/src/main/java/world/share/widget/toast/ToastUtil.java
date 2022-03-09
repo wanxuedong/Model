@@ -17,7 +17,9 @@ import androidx.fragment.app.FragmentManager;
  * 1：子线程可以调用
  * 2：多种风格Toast
  * 3：重复调用处理
- **/
+ *
+ * @author mac
+ */
 public class ToastUtil {
 
     /**

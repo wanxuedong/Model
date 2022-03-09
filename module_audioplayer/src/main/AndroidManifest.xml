@@ -13,7 +13,8 @@
         tools:replace="android:theme">
         <activity
             android:name=".AudioPlayerActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
