@@ -1,7 +1,6 @@
 package world.share.audioplayer.model
 
 import androidx.databinding.ObservableField
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import world.share.audioengine.AudioPlayer
 import world.share.audioengine.code.PlayState
@@ -29,12 +28,14 @@ class AudioPlayerModel(application: App, model: DataRepository) :
 
     var progress = ObservableField("00:00")
 
-    var seekCurrent = ObservableInt(50)
+    var seekCurrent = ObservableField(0)
+
+    var maxProgress = ObservableField(100)
 
     private val musicList =
-        mutableListOf<String>("https://media.w3.org/2010/05/sintel/trailer.mp4")
+//        mutableListOf<String>("https://media.w3.org/2010/05/sintel/trailer.mp4")
 //        mutableListOf<String>("http://downsc.chinaz.net/files/download/sound1/201206/1638.mp3")
-//        mutableListOf<String>("http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4")
+        mutableListOf<String>("sdcard/Download/WeiXin/陈一发儿.mp3")
 
     /**
      * 当前播放状态
@@ -44,7 +45,7 @@ class AudioPlayerModel(application: App, model: DataRepository) :
     /**
      * 当前播放状态图片
      * **/
-    var audioStateShow = R.mipmap.audio_pause
+    var audioStateShow = R.mipmap.audio_play
 
     val quitClickCommand: BindingCommand<Void> = BindingCommand(BindingAction {
         RouteCenter.navigate(RouterUrl.MAIN_ACTIVITY)
@@ -56,7 +57,7 @@ class AudioPlayerModel(application: App, model: DataRepository) :
 
     val playOrPauseMusic: BindingCommand<Void> = BindingCommand(BindingAction {
         when (playState.value) {
-            PlayState.ON_LOAD -> {
+            PlayState.ON_LOAD, PlayState.ON_DESTROY -> {
                 playState.value = PlayState.ON_START
                 audioPlayer.setSource(musicList[0])
                 audioPlayer.start()
